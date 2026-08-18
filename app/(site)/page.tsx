@@ -23,15 +23,15 @@ import { TurnkeySection } from "@/widgets/home/components/sections/turnkey-secti
 export default async function Home() {
   const [hero, services, projects, promises, about, transformation, turnkey, testimonials, testimonialStats] =
     await Promise.all([
-      sanityFetch<Record<string, unknown>>(heroQuery),
-      sanityFetch<Array<Record<string, unknown>>>(servicesQuery),
-      sanityFetch<Array<Record<string, unknown>>>(projectsQuery),
-      sanityFetch<Array<Record<string, unknown>>>(promisesQuery),
-      sanityFetch<Record<string, unknown>>(aboutSectionQuery),
-      sanityFetch<Record<string, unknown>>(transformationQuery),
-      sanityFetch<Record<string, unknown>>(turnkeyProcessQuery),
-      sanityFetch<Array<Record<string, unknown>>>(testimonialsQuery),
-      sanityFetch<Record<string, unknown>>(testimonialStatsQuery),
+      sanityFetch<Record<string, unknown>>(heroQuery, undefined, { tags: ["sanity-hero"] }),
+      sanityFetch<Array<Record<string, unknown>>>(servicesQuery, undefined, { tags: ["sanity-services"] }),
+      sanityFetch<Array<Record<string, unknown>>>(projectsQuery, undefined, { tags: ["sanity-projects"] }),
+      sanityFetch<Array<Record<string, unknown>>>(promisesQuery, undefined, { tags: ["sanity-promises"] }),
+      sanityFetch<Record<string, unknown>>(aboutSectionQuery, undefined, { tags: ["sanity-aboutSection"] }),
+      sanityFetch<Record<string, unknown>>(transformationQuery, undefined, { tags: ["sanity-transformation"] }),
+      sanityFetch<Record<string, unknown>>(turnkeyProcessQuery, undefined, { tags: ["sanity-turnkeyProcess"] }),
+      sanityFetch<Array<Record<string, unknown>>>(testimonialsQuery, undefined, { tags: ["sanity-testimonials"] }),
+      sanityFetch<Record<string, unknown>>(testimonialStatsQuery, undefined, { tags: ["sanity-testimonialStats"] }),
     ]);
 
   return (

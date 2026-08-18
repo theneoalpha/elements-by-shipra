@@ -9,9 +9,11 @@ export default async function SiteLayout({
   children: React.ReactNode;
 }>) {
   const [siteSettings] = await Promise.all([
-    sanityFetch<Record<string, unknown>>(siteSettingsQuery),
+    sanityFetch<Record<string, unknown>>(siteSettingsQuery, undefined, { tags: ["sanity-siteSettings"] }),
     sanityFetch<{ items?: Array<{ label: string; href: string }> }>(
       navigationQuery,
+      undefined,
+      { tags: ["sanity-navigation"] },
     ),
   ]);
 

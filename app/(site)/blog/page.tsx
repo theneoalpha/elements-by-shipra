@@ -44,7 +44,7 @@ const fallbackPosts = [
 ];
 
 export default async function BlogPage() {
-  const sanityPosts = await sanityFetch<Array<SanityBlogPost>>(blogPostsQuery);
+  const sanityPosts = await sanityFetch<Array<SanityBlogPost>>(blogPostsQuery, undefined, { tags: ["sanity-blogPosts"] });
 
   const posts = sanityPosts?.length
     ? sanityPosts.map((post) => ({
