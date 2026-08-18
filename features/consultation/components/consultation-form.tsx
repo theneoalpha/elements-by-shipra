@@ -22,16 +22,49 @@ const budgetRanges = [
 export function ConsultationForm() {
   const [selectedService, setSelectedService] = useState<string>("Interior Design");
   const [selectedBudget, setSelectedBudget] = useState<string>("₹25L – ₹50L");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [location, setLocation] = useState("");
+  const [message, setMessage] = useState("");
+  
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    setError(null);
+
+    try {
+      const response = await fetch("/api/consultation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          phone,
+          email,
+          location,
+          service: selectedService,
+          budget: selectedBudget,
+          message,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        const data = await response.json();
+        setError(data.error || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Failed to send inquiry. Please check your connection.");
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 800);
+    }
   };
 
   if (submitted) {
@@ -73,6 +106,11 @@ export function ConsultationForm() {
         <h3 className="mt-1 font-serif text-[26px] font-normal text-[#1A1816] sm:text-[30px]">
           Share Your Project Details
         </h3>
+        {error && (
+          <p className="mt-3 text-[12px] font-medium text-red-500 bg-red-50 p-3 rounded-lg border border-red-100">
+            {error}
+          </p>
+        )}
       </div>
 
       {/* 1. Service Selection Chips */}
@@ -110,6 +148,8 @@ export function ConsultationForm() {
           <input
             required
             type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder="e.g. Vikram Verma"
             className="w-full rounded-[14px] border border-[#E8DFC8] bg-[#FAF8F5] px-4 py-3.5 text-[13.5px] text-[#1A1816] placeholder:text-[#A29A90] transition-colors focus:border-[#B58544] focus:bg-white focus:outline-none"
           />
@@ -122,6 +162,8 @@ export function ConsultationForm() {
           <input
             required
             type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             placeholder="e.g. +91 98765 43210"
             className="w-full rounded-[14px] border border-[#E8DFC8] bg-[#FAF8F5] px-4 py-3.5 text-[13.5px] text-[#1A1816] placeholder:text-[#A29A90] transition-colors focus:border-[#B58544] focus:bg-white focus:outline-none"
           />
@@ -133,6 +175,8 @@ export function ConsultationForm() {
           </label>
           <input
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="e.g. vikram@example.com"
             className="w-full rounded-[14px] border border-[#E8DFC8] bg-[#FAF8F5] px-4 py-3.5 text-[13.5px] text-[#1A1816] placeholder:text-[#A29A90] transition-colors focus:border-[#B58544] focus:bg-white focus:outline-none"
           />
@@ -145,6 +189,8 @@ export function ConsultationForm() {
           <input
             required
             type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
             placeholder="e.g. Bilaspur / Raipur"
             className="w-full rounded-[14px] border border-[#E8DFC8] bg-[#FAF8F5] px-4 py-3.5 text-[13.5px] text-[#1A1816] placeholder:text-[#A29A90] transition-colors focus:border-[#B58544] focus:bg-white focus:outline-none"
           />
@@ -184,6 +230,8 @@ export function ConsultationForm() {
         </label>
         <textarea
           rows={3}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           placeholder="Describe your space, timeline, and aesthetic preferences..."
           className="w-full resize-none rounded-[14px] border border-[#E8DFC8] bg-[#FAF8F5] px-4 py-3.5 text-[13.5px] text-[#1A1816] placeholder:text-[#A29A90] transition-colors focus:border-[#B58544] focus:bg-white focus:outline-none"
         />
