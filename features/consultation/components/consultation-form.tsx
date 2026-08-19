@@ -238,26 +238,34 @@ export function ConsultationForm() {
       </div>
 
       {/* 5. Submit Button */}
-      <div className="mt-8">
-        <button
-          type="submit"
-          disabled={loading}
-          className="group relative flex h-13 w-full items-center justify-center gap-3 rounded-full bg-[#1A1816] px-8 text-[13px] font-medium tracking-[0.14em] uppercase text-[#EAD8BD] shadow-lg transition-all duration-300 hover:bg-black active:scale-[0.99] disabled:opacity-75"
-        >
-          {loading ? (
-            <span>Sending Inquiry...</span>
-          ) : (
-            <>
-              <span>Schedule My Consultation</span>
-              <ArrowRight
-                size={16}
-                strokeWidth={1.75}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </>
-          )}
-        </button>
-      </div>
+    <div className="mt-8">
+  <button
+    type="submit"
+    disabled={loading}
+    className="group relative flex h-14 w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-[#1A1816] px-8 text-[12px] font-medium uppercase tracking-[0.18em] text-[#EAD8BD] shadow-[0_10px_30px_rgba(26,24,22,0.15)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2A2724] hover:shadow-[0_14px_35px_rgba(26,24,22,0.22)] active:translate-y-0 disabled:pointer-events-none disabled:opacity-70"
+  >
+    {/* Subtle hover shine */}
+    <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+
+    {loading ? (
+      <>
+        <span className="relative h-4 w-4 animate-spin rounded-full border border-[#EAD8BD]/30 border-t-[#EAD8BD]" />
+        <span className="relative">Sending Inquiry...</span>
+      </>
+    ) : (
+      <>
+        <span className="relative">Schedule My Consultation</span>
+
+        <span className="relative flex h-7 w-7 items-center justify-center rounded-full bg-[#EAD8BD] text-[#1A1816] transition-transform duration-300 group-hover:translate-x-1">
+          <ArrowRight
+            size={14}
+            strokeWidth={2}
+          />
+        </span>
+      </>
+    )}
+  </button>
+</div>
     </form>
   );
 }

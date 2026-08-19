@@ -25,169 +25,130 @@ export async function POST(request: Request) {
       );
     }
 
-    const htmlContent = `
-      <!DOCTYPE html>
-      <html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <meta http-equiv="X-UA-Compatible" content="IE=edge">
-          <title>New Consultation Inquiry</title>
-          <style type="text/css">
-            /* Global Resets */
-            body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-            table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
-            img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
-            body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; background-color: #F4F1EA; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+const htmlContent = `
+<!DOCTYPE html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>New Consultation Inquiry</title>
+  <style type="text/css">
+    /* Reset styles for mobile email clients */
+    body, table, td, p, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+    body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; background-color: #FAF8F5; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #11100F; }
 
-            /* Mobile Overrides */
-            @media screen and (max-width: 600px) {
-              .outer-container { padding: 12px !important; }
-              .inner-card { padding: 24px 18px !important; }
-              .brand-header { padding: 28px 18px !important; }
-              .logo-title { font-size: 20px !important; letter-spacing: 3px !important; }
-              .data-value { font-size: 15px !important; }
-            }
-          </style>
-        </head>
-        <body style="margin: 0; padding: 0; background-color: #F4F1EA;">
+    /* Mobile Responsive Overrides */
+    @media screen and (max-width: 600px) {
+      .outer-padding { padding: 10px !important; }
+      .container { padding: 20px 16px !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
+      .brand-title { font-size: 18px !important; letter-spacing: 1.5px !important; }
+      .intro-paragraph { font-size: 14px !important; line-height: 1.5 !important; }
+      .table-cell { padding: 8px 10px !important; font-size: 13px !important; }
+      .message-bubble { padding: 14px 16px !important; border-radius: 4px 14px 14px 14px !important; }
+      .message-text { font-size: 13px !important; }
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #FAF8F5;">
 
-          <!-- Wrapper Background Table -->
-          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F4F1EA;">
-            <tr>
-              <td align="center" class="outer-container" style="padding: 30px 15px;">
-                
-                <!-- Main Container Card -->
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 580px; background-color: #FFFFFF; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #E6DFD3;">
-                  
-                  <!-- Brand Header -->
-                  <tr>
-                    <td class="brand-header" style="background-color: #11100F; padding: 36px 30px; text-align: center; border-bottom: 3px solid #C59A58;">
-                      <div class="logo-title" style="color: #F2E8DA; font-size: 22px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; margin: 0 0 6px 0;">SHIPRA DESIGNS</div>
-                      <div style="color: #C59A58; font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;">New Project Inquiry</div>
-                    </td>
-                  </tr>
+  <!-- Outer Wrapper Table for email rendering -->
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FAF8F5;">
+    <tr>
+      <td align="center" class="outer-padding" style="padding: 20px 10px;">
+        
+        <!-- Main Document Sheet -->
+        <table border="0" cellpadding="0" cellspacing="0" class="container" width="100%" style="max-width: 600px; background-color: #FFFFFF; border: 1px solid #E8DFC8; border-radius: 6px; padding: 32px 28px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+          <tr>
+            <td>
+              
+              <!-- Brand Header -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-bottom: 2px solid #11100F; padding-bottom: 12px; margin-bottom: 24px;">
+                <tr>
+                  <td>
+                    <h1 class="brand-title" style="font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #11100F; margin: 0;">SHIPRA DESIGNS</h1>
+                    <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #C59A58; margin-top: 4px;">New Project Inquiry Notification</div>
+                  </td>
+                </tr>
+              </table>
 
-                  <!-- Card Body -->
-                  <tr>
-                    <td class="inner-card" style="padding: 36px 32px; background-color: #FFFFFF;">
-                      
-                      <!-- Section 1 Header -->
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 20px;">
-                        <tr>
-                          <td style="font-size: 11px; font-weight: 700; color: #C59A58; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #F4F1EA; padding-bottom: 8px;">
-                            Client Profile
-                          </td>
-                        </tr>
-                      </table>
+              <!-- Direct Opening Sentence -->
+              <div class="intro-paragraph" style="font-size: 15px; line-height: 1.6; color: #2B2825; margin-bottom: 24px;">
+                Hi, <strong>${name}</strong> has submitted a new project consultation inquiry for <strong>${service}</strong> in <strong>${location}</strong> with an estimated budget of <strong>${budget || "Flexible / Not specified"}</strong>.
+              </div>
 
-                      <!-- Full Name -->
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 16px;">
-                        <tr>
-                          <td style="background-color: #FAF8F5; padding: 12px 16px; border-radius: 8px; border-left: 3px solid #11100F;">
-                            <div style="font-size: 10px; font-weight: 700; color: #8C8479; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;">Full Name</div>
-                            <div class="data-value" style="font-size: 16px; font-weight: 700; color: #11100F;">${name}</div>
-                          </td>
-                        </tr>
-                      </table>
+              <!-- Chat Bubble UI Message Box -->
+              ${message ? `
+              <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #8C8479; margin-bottom: 10px; border-bottom: 1px solid #F4F1EA; padding-bottom: 4px;">
+                Client Message &amp; Scope
+              </div>
+              <div style="margin-bottom: 28px;">
+                <div class="message-bubble" style="background-color: #FAF6F0; border: 1px solid #E8DFC8; border-radius: 4px 18px 18px 18px; padding: 16px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+                  <span style="font-size: 13px; font-weight: 700; color: #11100F; margin-bottom: 6px; display: block;">${name}</span>
+                  <p class="message-text" style="font-size: 14px; line-height: 1.6; color: #3A3530; white-space: pre-wrap; margin: 0;">${message}</p>
+                </div>
+              </div>
+              ` : ''}
 
-                      <!-- Phone & Email (Clean Stack layout for both screen sizes) -->
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 16px;">
-                        <tr>
-                          <td style="background-color: #FAF8F5; padding: 12px 16px; border-radius: 8px; margin-bottom: 10px;">
-                            <div style="font-size: 10px; font-weight: 700; color: #8C8479; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;">Phone Number</div>
-                            <div class="data-value" style="font-size: 15px; font-weight: 600; color: #11100F;">${phone}</div>
-                          </td>
-                        </tr>
-                      </table>
+              <!-- Client Details Header -->
+              <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #8C8479; margin-bottom: 10px; border-bottom: 1px solid #F4F1EA; padding-bottom: 4px;">
+                Client Details
+              </div>
 
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 16px;">
-                        <tr>
-                          <td style="background-color: #FAF8F5; padding: 12px 16px; border-radius: 8px;">
-                            <div style="font-size: 10px; font-weight: 700; color: #8C8479; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;">Email Address</div>
-                            <div class="data-value" style="font-size: 15px; font-weight: 600; color: #11100F;">${email || "Not provided"}</div>
-                          </td>
-                        </tr>
-                      </table>
+              <!-- Client & Project Details Table -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+                <tr>
+                  <th class="table-cell" width="35%" style="text-align: left; padding: 10px 12px; border: 1px solid #E8DFC8; font-size: 14px; background-color: #FAF8F5; font-weight: 600; color: #666056;">Full Name</th>
+                  <td class="table-cell" width="65%" style="text-align: left; padding: 10px 12px; border: 1px solid #E8DFC8; font-size: 14px; color: #11100F;"><strong>${name}</strong></td>
+                </tr>
+                <tr>
+                  <th class="table-cell" style="text-align: left; padding: 10px 12px; border: 1px solid #E8DFC8; font-size: 14px; background-color: #FAF8F5; font-weight: 600; color: #666056;">Phone Number</th>
+                  <td class="table-cell" style="text-align: left; padding: 10px 12px; border: 1px solid #E8DFC8; font-size: 14px; color: #11100F;">${phone}</td>
+                </tr>
+                <tr>
+                  <th class="table-cell" style="text-align: left; padding: 10px 12px; border: 1px solid #E8DFC8; font-size: 14px; background-color: #FAF8F5; font-weight: 600; color: #666056;">Email Address</th>
+                  <td class="table-cell" style="text-align: left; padding: 10px 12px; border: 1px solid #E8DFC8; font-size: 14px; color: #11100F;">
+                    ${email ? `<a href="mailto:${email}" style="color: #11100F; font-weight: 600; text-decoration: underline;">${email}</a>` : 'Not provided'}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="table-cell" style="text-align: left; padding: 10px 12px; border: 1px solid #E8DFC8; font-size: 14px; background-color: #FAF8F5; font-weight: 600; color: #666056;">Project Location</th>
+                  <td class="table-cell" style="text-align: left; padding: 10px 12px; border: 1px solid #E8DFC8; font-size: 14px; color: #11100F;">${location}</td>
+                </tr>
+                <tr>
+                  <th class="table-cell" style="text-align: left; padding: 10px 12px; border: 1px solid #E8DFC8; font-size: 14px; background-color: #FAF8F5; font-weight: 600; color: #666056;">Requested Service</th>
+                  <td class="table-cell" style="text-align: left; padding: 10px 12px; border: 1px solid #E8DFC8; font-size: 14px; color: #11100F;"><strong style="color: #C59A58;">${service}</strong></td>
+                </tr>
+                <tr>
+                  <th class="table-cell" style="text-align: left; padding: 10px 12px; border: 1px solid #E8DFC8; font-size: 14px; background-color: #FAF8F5; font-weight: 600; color: #666056;">Estimated Budget</th>
+                  <td class="table-cell" style="text-align: left; padding: 10px 12px; border: 1px solid #E8DFC8; font-size: 14px; color: #11100F;">${budget || "Flexible / Not specified"}</td>
+                </tr>
+              </table>
 
-                      <!-- Location -->
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 28px;">
-                        <tr>
-                          <td style="background-color: #FAF8F5; padding: 12px 16px; border-radius: 8px;">
-                            <div style="font-size: 10px; font-weight: 700; color: #8C8479; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;">Project Location</div>
-                            <div class="data-value" style="font-size: 15px; font-weight: 600; color: #11100F;">${location}</div>
-                          </td>
-                        </tr>
-                      </table>
+              <!-- Simple Sign-off -->
+              <p style="font-size: 14px; color: #2B2825; margin: 0 0 4px 0;">
+                Regards,<br>
+                <strong>Shipra Designs Consultation System</strong>
+              </p>
 
-                      <!-- Section 2 Header -->
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 20px;">
-                        <tr>
-                          <td style="font-size: 11px; font-weight: 700; color: #C59A58; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #F4F1EA; padding-bottom: 8px;">
-                            Project Requirements
-                          </td>
-                        </tr>
-                      </table>
+              <!-- Minimal Footer -->
+              <div style="font-size: 10px; color: #8C8479; border-top: 1px solid #E8DFC8; padding-top: 16px; margin-top: 24px; text-align: center; text-transform: uppercase; letter-spacing: 1px;">
+                &copy; ${new Date().getFullYear()} Shipra Designs. All rights reserved.
+              </div>
 
-                      <!-- Highlighted Service & Budget Box -->
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FAF6F0; border: 1px solid #E8DFC8; border-radius: 10px; margin-bottom: 24px; overflow: hidden;">
-                        <tr>
-                          <td style="padding: 16px;">
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 12px;">
-                              <tr>
-                                <td>
-                                  <div style="font-size: 10px; font-weight: 700; color: #8C8479; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;">Requested Service</div>
-                                  <div style="font-size: 16px; font-weight: 700; color: #C59A58;">${service}</div>
-                                </td>
-                              </tr>
-                            </table>
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                              <tr>
-                                <td style="border-top: 1px dashed #E3D9C6; padding-top: 12px;">
-                                  <div style="font-size: 10px; font-weight: 700; color: #8C8479; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;">Estimated Budget</div>
-                                  <div style="font-size: 15px; font-weight: 700; color: #11100F;">${budget || "Flexible / Not specified"}</div>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                      </table>
+            </td>
+          </tr>
+        </table>
 
-                      <!-- Client Message Box -->
-                      ${message ? `
-                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                          <tr>
-                            <td style="font-size: 10px; font-weight: 700; color: #8C8479; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">Client Notes / Scope</td>
-                          </tr>
-                          <tr>
-                            <td style="background-color: #FFFFFF; border-left: 3px solid #C59A58; padding: 14px 16px; border-top: 1px solid #F0ECE1; border-right: 1px solid #F0ECE1; border-bottom: 1px solid #F0ECE1; border-radius: 0 8px 8px 0; color: #4A443D; font-size: 14px; line-height: 1.6; font-style: italic;">
-                              "${message}"
-                            </td>
-                          </tr>
-                        </table>
-                      ` : ''}
+      </td>
+    </tr>
+  </table>
 
-                    </td>
-                  </tr>
-
-                  <!-- Footer -->
-                  <tr>
-                    <td style="background-color: #FAF8F5; padding: 24px 20px; text-align: center; border-top: 1px solid #E6DFD3;">
-                      <p style="margin: 0 0 4px 0; font-size: 12px; font-weight: 600; color: #11100F;">Shipra Designs Consultation System</p>
-                      <p style="margin: 0; font-size: 10px; color: #8C8479;">&copy; ${new Date().getFullYear()} Shipra Designs. Sent via website inquiry form.</p>
-                    </td>
-                  </tr>
-
-                </table>
-
-              </td>
-            </tr>
-          </table>
-
-        </body>
-      </html>
-    `;
-
+</body>
+</html>
+`;
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
