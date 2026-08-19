@@ -1,5 +1,5 @@
 export const transformation = {
- beforeImage: "/before.png",
+  beforeImage: "/before.png",
   afterImage: "/after.png",
   beforeLabel: "Before",
   afterLabel: "After",
