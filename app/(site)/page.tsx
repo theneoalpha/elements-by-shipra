@@ -1,24 +1,43 @@
+import type { Metadata } from "next";
+
+import { AboutSection } from "@/features/about/components/about-section";
+import { ConsultationSection } from "@/features/consultation/components/consultation-section";
+import { HeroSection } from "@/features/hero/components/hero-section";
+import { ProjectsSection } from "@/features/projects/components/projects-section";
+import { PromisesSection } from "@/features/promises/components/promises-section";
+import { ServicesSection } from "@/features/services/components/services-section";
+import { TestimonialsSection } from "@/features/testimonials/components/testimonials-section";
+import { TransformationSection } from "@/features/transformation/components/transformation-section";
+import { TurnkeySection } from "@/features/turnkey/components/turnkey-section";
 import { sanityFetch } from "@/sanity/lib";
 import {
+  aboutSectionQuery,
   heroQuery,
-  servicesQuery,
+  pageMetadataQuery,
   projectsQuery,
   promisesQuery,
-  aboutSectionQuery,
+  servicesQuery,
+  testimonialStatsQuery,
+  testimonialsQuery,
   transformationQuery,
   turnkeyProcessQuery,
-  testimonialsQuery,
-  testimonialStatsQuery,
 } from "@/sanity/lib/queries";
-import { AboutSection } from "@/widgets/home/components/sections/about-section";
-import { ConsultationSection } from "@/widgets/home/components/sections/consultation-section";
-import { HeroSection } from "@/widgets/home/components/sections/hero-section";
-import { ProjectsSection } from "@/widgets/home/components/sections/projects-section";
-import { PromisesSection } from "@/widgets/home/components/sections/promises-section";
-import { ServicesSection } from "@/widgets/home/components/sections/services-section";
-import { TestimonialsSection } from "@/widgets/home/components/sections/testimonials-section";
-import { TransformationSection } from "@/widgets/home/components/sections/transformation-section";
-import { TurnkeySection } from "@/widgets/home/components/sections/turnkey-section";
+
+interface PageMeta {
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = await sanityFetch<PageMeta>(pageMetadataQuery, { slug: "home" }, { tags: ["sanity-pageMetadata"] });
+
+  return {
+    title: meta?.title ?? "Home",
+    description: meta?.description ?? "",
+    openGraph: meta?.ogImage ? { images: [meta.ogImage] } : undefined,
+  };
+}
 
 export default async function Home() {
   const [hero, services, projects, promises, about, transformation, turnkey, testimonials, testimonialStats] =

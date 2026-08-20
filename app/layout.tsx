@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 
-import { siteConfig } from "@/config/site";
+import { sanityFetch } from "@/sanity/lib";
+import { siteSettingsQuery } from "@/sanity/lib/queries";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -17,19 +18,31 @@ const jost = Jost({
   weight: ["300", "400", "500", "600"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: `${siteConfig.name} — Interior Design Studio`,
-    template: `%s — ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  openGraph: {
-    title: `${siteConfig.name} — Interior Design Studio`,
-    description: siteConfig.description,
-    locale: "en_IN",
-    type: "website",
-  },
-};
+interface SiteSettings {
+  name?: string;
+  description?: string;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await sanityFetch<SiteSettings>(siteSettingsQuery, undefined, { tags: ["sanity-siteSettings"] });
+
+  const name = settings?.name ?? "SHIPRA DESIGNS";
+  const description = settings?.description ?? "";
+
+  return {
+    title: {
+      default: `${name} — Interior Design Studio`,
+      template: `%s — ${name}`,
+    },
+    description,
+    openGraph: {
+      title: `${name} — Interior Design Studio`,
+      description,
+      locale: "en_IN",
+      type: "website",
+    },
+  };
+}
 
 export default function RootLayout({
   children,

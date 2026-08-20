@@ -1,20 +1,26 @@
-import { aboutSection } from "./about-section";
+import { aboutSection } from "@/features/about/schema";
+import { consultation } from "@/features/consultation/schema";
+import { hero } from "@/features/hero/schema";
+import { legalPage } from "@/features/legal/schema";
+import { project } from "@/features/projects/schema";
+import { promise } from "@/features/promises/schema";
+import { service } from "@/features/services/schema";
+import {
+  testimonial,
+  testimonialStats,
+} from "@/features/testimonials/schema";
+import { transformation } from "@/features/transformation/schema";
+import { turnkeyProcess } from "@/features/turnkey/schema";
+
 import { blogPost } from "./blog-post";
-import { consultation } from "./consultation";
-import { hero } from "./hero";
 import { navigation } from "./navigation";
-import { project } from "./project";
-import { promise } from "./promise";
-import { service } from "./service";
+import { pageMetadata } from "./page-metadata";
 import { siteSettings } from "./site-settings";
-import { testimonial } from "./testimonial";
-import { testimonialStats } from "./testimonial-stats";
-import { transformation } from "./transformation";
-import { turnkeyProcess } from "./turnkey-process";
 
 export const schemaTypes = [
   siteSettings,
   navigation,
+  pageMetadata,
   hero,
   service,
   project,
@@ -26,4 +32,5 @@ export const schemaTypes = [
   transformation,
   turnkeyProcess,
   consultation,
+  legalPage,
 ];

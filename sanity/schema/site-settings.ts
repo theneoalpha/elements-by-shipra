@@ -75,6 +75,14 @@ export const siteSettings = defineType({
       initialValue: "Complimentary 45-minute spatial consultation & estimate.",
     }),
     defineField({
+      name: "whatsappMessage",
+      title: "WhatsApp Default Message",
+      type: "text",
+      rows: 2,
+      initialValue: "Hi, I'm interested in your interior design services. I'd like to know more.",
+      description: "Pre-filled message when user clicks the WhatsApp floating button",
+    }),
+    defineField({
       name: "socialLinks",
       title: "Social Links",
       type: "object",

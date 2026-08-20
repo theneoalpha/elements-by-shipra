@@ -54,11 +54,8 @@ const eslintConfig = defineConfig([
         {
           zones: [
             { target: "./shared", from: "./features" },
-            { target: "./shared", from: "./widgets" },
             { target: "./shared", from: "./app" },
-            { target: "./features", from: "./widgets" },
             { target: "./features", from: "./app" },
-            { target: "./widgets", from: "./app" },
             ...featureIsolationZones,
           ],
         },

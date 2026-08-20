@@ -11,6 +11,7 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   brandStatement,
   workingHours,
   trustFootnote,
+  whatsappMessage,
   socialLinks
 }`;
 
@@ -46,7 +47,7 @@ export const projectsQuery = `*[_type == "project"] | order(number asc){
   tags[]{label}
 }`;
 
-export const testimonialsQuery = `*[_type == "testimonial"]{
+export const testimonialsQuery = `*[_type == "testimonial" && approved == true]{
   quote,
   name,
   role,
@@ -105,4 +106,15 @@ export const consultationQuery = `*[_type == "consultation"][0]{
   description,
   serviceOptions,
   budgetRanges
+}`;
+
+export const pageMetadataQuery = `*[_type == "pageMetadata" && slug == $slug][0]{
+  title,
+  description,
+  "ogImage": ogImage.asset->url
+}`;
+
+export const legalPageQuery = `*[_type == "legalPage" && slug == $slug][0]{
+  title,
+  body
 }`;
