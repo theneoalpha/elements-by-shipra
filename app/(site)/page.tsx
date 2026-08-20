@@ -12,6 +12,7 @@ import { TurnkeySection } from "@/features/turnkey/components/turnkey-section";
 import { sanityFetch } from "@/sanity/lib";
 import {
   aboutSectionQuery,
+  consultationQuery,
   heroQuery,
   pageMetadataQuery,
   projectsQuery,
@@ -40,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const [hero, services, projects, promises, about, transformation, turnkey, testimonials, testimonialStats] =
+  const [hero, services, projects, promises, about, transformation, turnkey, testimonials, testimonialStats, consultation] =
     await Promise.all([
       sanityFetch<Record<string, unknown>>(heroQuery, undefined, { tags: ["sanity-hero"] }),
       sanityFetch<Array<Record<string, unknown>>>(servicesQuery, undefined, { tags: ["sanity-services"] }),
@@ -51,6 +52,7 @@ export default async function Home() {
       sanityFetch<Record<string, unknown>>(turnkeyProcessQuery, undefined, { tags: ["sanity-turnkeyProcess"] }),
       sanityFetch<Array<Record<string, unknown>>>(testimonialsQuery, undefined, { tags: ["sanity-testimonials"] }),
       sanityFetch<Record<string, unknown>>(testimonialStatsQuery, undefined, { tags: ["sanity-testimonialStats"] }),
+      sanityFetch<Record<string, unknown>>(consultationQuery, undefined, { tags: ["sanity-consultation"] }),
     ]);
 
   return (
@@ -70,7 +72,7 @@ export default async function Home() {
             | undefined) ?? undefined
         }
       />
-      <ConsultationSection />
+      <ConsultationSection data={consultation ?? undefined} />
     </main>
   );
 }
