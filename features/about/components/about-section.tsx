@@ -3,7 +3,13 @@
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 
-import { fallbackPillars, fallbackStats, pillarIcons, statIcons } from "@/features/about/data";
+import {
+  fallback,
+  fallbackPillars,
+  fallbackStats,
+  pillarIcons,
+  statIcons,
+} from "@/features/about/data";
 import { urlFor } from "@/sanity/lib/image";
 
 interface AboutSectionProps {
@@ -28,10 +34,10 @@ export function AboutSection({ data }: AboutSectionProps) {
   const pillars = data?.pillars?.length ? data.pillars : fallbackPillars;
   const founderImageSrc = data?.founderImage
     ? urlFor(data.founderImage).width(1200).quality(80).url()
-    : "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80";
+    : fallback.founderImageUrl;
   const founderImageMobileSrc = data?.founderImage
     ? urlFor(data.founderImage).width(1000).quality(80).url()
-    : "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80";
+    : fallback.founderImageMobileUrl;
 
   return (
     <section className="relative overflow-hidden bg-[#FBF9F5] pt-14 pb-20 font-sans selection:bg-[#c59a58]/20">
@@ -41,29 +47,29 @@ export function AboutSection({ data }: AboutSectionProps) {
           <div className="lg:col-span-6 pt-4 lg:pt-8 z-10">
             <div className="inline-flex flex-col items-start">
               <span className="text-[11px] font-semibold tracking-[0.26em] uppercase text-[#B58544]">
-                {data?.eyebrow ?? "About Shipra"}
+                {data?.eyebrow ?? fallback.eyebrow}
               </span>
               <div className="mt-2 h-[1.5px] w-8 bg-[#C59A58]" />
             </div>
 
             <h2 className="mt-6 font-serif text-[42px] sm:text-[50px] lg:text-[54px] font-normal leading-[1.08] text-[#1A1816]">
-              {(data?.title ?? "The Vision Behind Every Beautiful Space.").includes("Every Beautiful Space") ? (
+              {(data?.title ?? fallback.title).includes("Every Beautiful Space") ? (
                 <>The Vision Behind <br /><span className="italic text-[#B58544]">Every Beautiful Space.</span></>
               ) : (
-                data?.title ?? "The Vision Behind Every Beautiful Space."
+                data?.title ?? fallback.title
               )}
             </h2>
 
             <p className="mt-6 text-[13.5px] leading-relaxed text-[#6E675E] max-w-lg">
-              {data?.founderBio ?? "I'm Shipra, the founder and lead designer at Shipra Designs. With over 10 years of experience, I believe that great design goes beyond aesthetics—it's about creating spaces that truly feel like you."}
+              {data?.founderBio ?? fallback.founderBio}
             </p>
 
             <div className="mt-7 flex flex-col items-start">
               <span className="font-serif italic text-[44px] text-[#B58544] leading-none select-none" style={{ fontFamily: "cursive, 'Playfair Display', serif" }}>
-                {data?.founderName ?? "Shipra"}
+                {data?.founderName ?? fallback.founderName}
               </span>
               <span className="mt-2 text-[9.5px] font-bold tracking-[0.24em] uppercase text-[#1A1816]">
-                {data?.founderTitle ?? "Founder & Lead Designer"}
+                {data?.founderTitle ?? fallback.founderTitle}
               </span>
             </div>
 

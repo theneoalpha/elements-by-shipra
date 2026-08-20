@@ -5,11 +5,13 @@ import { Mail, MapPin, Phone, Clock, Sparkles } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import ConsultationForm from "@/features/consultation/components/consultation-form";
 
+import { fallback } from "@/features/consultation/data";
+
 
 export function ConsultationSection() {
-  const phone = siteConfig?.phone || "+91 99999 99999";
-  const email = siteConfig?.email || "contact@shipradesigns.com";
-  const address = siteConfig?.address || "Bilaspur, Chhattisgarh, India";
+  const phone = siteConfig?.phone || fallback.phone;
+  const email = siteConfig?.email || fallback.email;
+  const address = siteConfig?.address || fallback.address;
 
   const contactDetails = [
     {
@@ -33,7 +35,7 @@ export function ConsultationSection() {
     {
       icon: Clock,
       label: "WORKING HOURS",
-      value: "Mon – Sat: 10:00 AM – 7:00 PM",
+      value: fallback.workingHours,
       href: null,
     },
   ];
@@ -64,18 +66,18 @@ export function ConsultationSection() {
             <div className="inline-flex items-center gap-3">
               <span className="h-px w-6 bg-[#C59A58]" />
               <span className="text-[11px] font-semibold tracking-[0.28em] uppercase text-[#B58544]">
-                Book a Consultation
+                {fallback.eyebrow}
               </span>
               <span className="h-px w-6 bg-[#C59A58]" />
             </div>
 
             <h2 className="mt-4 font-serif text-[38px] font-normal leading-[1.1] text-[#1A1816] md:text-[50px]">
-              Let&apos;s create something{" "}
-              <span className="italic text-[#B58544] block">beautiful together.</span>
+              {fallback.title}{" "}
+              <span className="italic text-[#B58544] block">{fallback.titleItalic}</span>
             </h2>
 
             <p className="mt-5 max-w-md text-[13.5px] leading-relaxed text-[#6E675E]">
-              Every timeless space begins with a thoughtful conversation. Tell us about your vision, schedule, and lifestyle—our team will take care of every detail from blueprint to final styling.
+              {fallback.description}
             </p>
 
             {/* Quick Contact Cards */}
@@ -115,7 +117,7 @@ export function ConsultationSection() {
             {/* Trust Footnote */}
             <div className="mt-8 flex items-center gap-2.5 text-[11.5px] text-[#7A7268]">
               <Sparkles size={14} className="text-[#B58544] shrink-0" />
-              <span>Complimentary 45-minute spatial consultation & estimate.</span>
+              <span>{fallback.trustNote}</span>
             </div>
           </div>
 

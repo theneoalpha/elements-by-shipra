@@ -1,3 +1,16 @@
+export const fallback = {
+  eyebrow: "About Shipra",
+  title: "The Vision Behind Every Beautiful Space.",
+  founderBio:
+    "I'm Shipra, the founder and lead designer at Shipra Designs. With over 10 years of experience, I believe that great design goes beyond aesthetics—it's about creating spaces that truly feel like you.",
+  founderName: "Shipra",
+  founderTitle: "Founder & Lead Designer",
+  founderImageUrl:
+    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80",
+  founderImageMobileUrl:
+    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80",
+};
+
 export const fallbackStats = [
   { value: "10+", label: "YEARS OF EXPERIENCE" },
   { value: "500+", label: "PROJECTS COMPLETED" },
