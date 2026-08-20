@@ -59,7 +59,7 @@ export function ConsultationSection() {
 
       <div className="mx-auto max-w-[1380px] px-5 sm:px-8 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14 items-start">
-          {/* ================= LEFT COLUMN: STUDIO BIO & CONTACT ================= */}
+          {/* LEFT COLUMN: STUDIO BIO & CONTACT */}
           <div className="lg:col-span-5 lg:sticky lg:top-32">
             <div className="inline-flex items-center gap-3">
               <span className="h-px w-6 bg-[#C59A58]" />
@@ -119,7 +119,7 @@ export function ConsultationSection() {
             </div>
           </div>
 
-          {/* ================= RIGHT COLUMN: CONSULTATION FORM ================= */}
+          {/* RIGHT COLUMN: CONSULTATION FORM */}
           <div className="lg:col-span-7">
             <ConsultationForm />
           </div>

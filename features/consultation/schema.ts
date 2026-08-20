@@ -1,46 +1,44 @@
-import { z } from "zod";
+import { defineField, defineType } from "sanity";
 
-import {
-  BUDGET_RANGES,
-  MESSAGE_MAX_LENGTH,
-  SERVICE_OPTIONS,
-} from "@/features/consultation/constants";
-import { REGEX } from "@/shared/helper/regex";
-
-export const consultationFormSchema = z.object({
-  name: z
-    .string()
-    .min(2, "Name must be at least 2 characters")
-    .regex(
-      REGEX.alphabeticNameWithHyphen.pattern,
-      REGEX.alphabeticNameWithHyphen.message,
-    ),
-  phone: z
-    .string()
-    .regex(REGEX.mobileNumber.pattern, REGEX.mobileNumber.message),
-  email: z
-    .string()
-    .regex(REGEX.email.pattern, REGEX.email.message)
-    .optional()
-    .or(z.literal("")),
-  location: z
-    .string()
-    .min(2, "Location is required")
-    .regex(REGEX.cityName.pattern, REGEX.cityName.message),
-  service: z.enum(SERVICE_OPTIONS, {
-    message: "Please select a service",
-  }),
-  budget: z.enum(BUDGET_RANGES, {
-    message: "Please select a budget range",
-  }),
-  message: z
-    .string()
-    .max(
-      MESSAGE_MAX_LENGTH,
-      `Message must be ${MESSAGE_MAX_LENGTH} characters or fewer`,
-    )
-    .optional()
-    .or(z.literal("")),
+export const consultation = defineType({
+  name: "consultation",
+  title: "Consultation Section",
+  type: "document",
+  fields: [
+    defineField({
+      name: "eyebrow",
+      title: "Eyebrow",
+      type: "string",
+      initialValue: "Book a Consultation",
+    }),
+    defineField({
+      name: "title",
+      title: "Title",
+      type: "text",
+      rows: 2,
+    }),
+    defineField({
+      name: "description",
+      title: "Description",
+      type: "text",
+      rows: 3,
+    }),
+    defineField({
+      name: "serviceOptions",
+      title: "Service Options",
+      type: "array",
+      of: [{ type: "string" }],
+    }),
+    defineField({
+      name: "budgetRanges",
+      title: "Budget Ranges",
+      type: "array",
+      of: [{ type: "string" }],
+    }),
+  ],
+  preview: {
+    prepare() {
+      return { title: "Consultation Section" };
+    },
+  },
 });
-
-export type ConsultationFormValues = z.infer<typeof consultationFormSchema>;

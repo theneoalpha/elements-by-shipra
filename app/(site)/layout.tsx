@@ -1,7 +1,7 @@
+import Footer from "@/features/footer/components/footer";
+import Header from "@/features/header/components/header";
 import { sanityFetch } from "@/sanity/lib";
 import { siteSettingsQuery, navigationQuery } from "@/sanity/lib/queries";
-import Footer from "@/widgets/footer/footer";
-import Header from "@/widgets/header/header";
 
 export default async function SiteLayout({
   children,

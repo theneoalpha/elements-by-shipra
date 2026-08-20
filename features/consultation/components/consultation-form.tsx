@@ -9,7 +9,7 @@ import { consultationFields } from "@/features/consultation/constants";
 import {
   consultationFormSchema,
   type ConsultationFormValues,
-} from "@/features/consultation/schema";
+} from "@/features/consultation/form-schema";
 import { Form } from "@/shared/components/forms/form";
 import { RenderFields } from "@/shared/components/forms/render-fields";
 import { FormSubmitStatusMessage } from "@/shared/components/forms/submit-status-message";

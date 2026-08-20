@@ -6,8 +6,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { siteConfig } from "@/config/site";
-import { DesktopNav } from "@/widgets/header/desktop-nav";
-import { MobileNav } from "@/widgets/header/mobile-nav";
+import { DesktopNav } from "@/features/header/components/desktop-nav";
+import { MobileNav } from "@/features/header/components/mobile-nav";
 
 interface HeaderProps {
   siteSettings?: {

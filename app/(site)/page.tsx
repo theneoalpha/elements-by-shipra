@@ -1,3 +1,12 @@
+import { AboutSection } from "@/features/about/components/about-section";
+import { ConsultationSection } from "@/features/consultation/components/consultation-section";
+import { HeroSection } from "@/features/hero/components/hero-section";
+import { ProjectsSection } from "@/features/projects/components/projects-section";
+import { PromisesSection } from "@/features/promises/components/promises-section";
+import { ServicesSection } from "@/features/services/components/services-section";
+import { TestimonialsSection } from "@/features/testimonials/components/testimonials-section";
+import { TransformationSection } from "@/features/transformation/components/transformation-section";
+import { TurnkeySection } from "@/features/turnkey/components/turnkey-section";
 import { sanityFetch } from "@/sanity/lib";
 import {
   heroQuery,
@@ -10,15 +19,6 @@ import {
   testimonialsQuery,
   testimonialStatsQuery,
 } from "@/sanity/lib/queries";
-import { AboutSection } from "@/widgets/home/components/sections/about-section";
-import { ConsultationSection } from "@/widgets/home/components/sections/consultation-section";
-import { HeroSection } from "@/widgets/home/components/sections/hero-section";
-import { ProjectsSection } from "@/widgets/home/components/sections/projects-section";
-import { PromisesSection } from "@/widgets/home/components/sections/promises-section";
-import { ServicesSection } from "@/widgets/home/components/sections/services-section";
-import { TestimonialsSection } from "@/widgets/home/components/sections/testimonials-section";
-import { TransformationSection } from "@/widgets/home/components/sections/transformation-section";
-import { TurnkeySection } from "@/widgets/home/components/sections/turnkey-section";
 
 export default async function Home() {
   const [hero, services, projects, promises, about, transformation, turnkey, testimonials, testimonialStats] =

@@ -1,7 +1,7 @@
 import {
   consultationFormSchema,
   type ConsultationFormValues,
-} from "@/features/consultation/schema";
+} from "@/features/consultation/form-schema";
 import { REGEX } from "@/shared/helper/regex";
 
 describe("consultationFormSchema", () => {

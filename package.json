@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint app shared widgets features config",
+    "lint": "eslint app shared features config",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

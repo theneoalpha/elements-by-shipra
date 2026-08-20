@@ -1,15 +1,27 @@
-import {
-  BUDGET_RANGES,
-  MESSAGE_MAX_LENGTH,
-  SERVICE_OPTIONS,
-} from "@/features/consultation/constants";
-import type { ConsultationFormValues } from "@/features/consultation/schema";
 import type { TFieldConfig } from "@/shared/components/forms/types";
 
-export const SERVICE_OPTIONS_LIST = SERVICE_OPTIONS;
-export const BUDGET_RANGE_OPTIONS = BUDGET_RANGES;
+export const SERVICE_OPTIONS = [
+  "Interior Design",
+  "External Elevation",
+  "Vastu Consultation",
+  "Commercial Design",
+  "Modular Furniture",
+] as const;
 
-export const consultationFields: TFieldConfig<ConsultationFormValues>[] = [
+export const BUDGET_RANGES = [
+  "Under ₹10 Lakh",
+  "₹10 – 25 Lakh",
+  "₹25 – 50 Lakh",
+  "₹50 Lakh – 1 Cr",
+  "₹1 Cr+",
+] as const;
+
+export const MESSAGE_MAX_LENGTH = 500;
+
+export const SERVICE_OPTIONS_LIST = [...SERVICE_OPTIONS];
+export const BUDGET_RANGE_OPTIONS = [...BUDGET_RANGES];
+
+export const consultationFields: TFieldConfig[] = [
   {
     name: "service",
     label: "Select Service Required",
