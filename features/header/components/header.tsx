@@ -3,6 +3,7 @@
 import { clsx } from "clsx";
 import { ArrowUpRight, Menu, X, Phone } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { siteConfig } from "@/config/site";
@@ -19,6 +20,8 @@ interface HeaderProps {
 export default function Header({ siteSettings }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   const phone = siteSettings?.phone ?? siteConfig.phone;
 
@@ -39,7 +42,7 @@ export default function Header({ siteSettings }: HeaderProps) {
       <header
         className={[
           "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-          scrolled ? "bg-[#0b0b0a]/95 backdrop-blur-md" : "bg-transparent",
+          !isHome || scrolled ? "bg-[#0b0b0a]/95 backdrop-blur-md" : "bg-transparent",
         ].join(" ")}
       >
         <div className="px-6 md:px-8 lg:px-12 xl:px-[50px]">
@@ -69,7 +72,7 @@ export default function Header({ siteSettings }: HeaderProps) {
             <div className="ml-auto flex items-center gap-3 md:gap-4">
               {/* Consultation - Desktop Only */}
               <Link
-                href="#contact"
+                href="/contact"
                 className="hidden h-[42px] items-center gap-3 rounded-[8px] bg-[#ead8bd] px-5 text-[11px] font-medium text-[#171411] transition-colors hover:bg-[#f2e5d1] lg:flex"
               >
                 <span>Book a Consultation</span>

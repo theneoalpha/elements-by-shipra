@@ -1,38 +1,46 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { mainNav } from "@/config/site";
 
 export function DesktopNav() {
+  const pathname = usePathname();
+
+  function isActive(href: string): boolean {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  }
+
   return (
     <nav
       aria-label="Main"
       className="hidden flex-1 items-center justify-center gap-8 lg:flex xl:gap-9"
     >
-      {mainNav.map((item, index) => (
-        <Link
-          key={item.label}
-          href={item.href}
-          className="group relative py-2 text-[16px] font-medium text-white/95 transition-colors duration-300 hover:text-[#c99655]"
-        >
-          {item.label}
+      {mainNav.map((item) => {
+        const active = isActive(item.href);
 
-          {/* Active underline */}
-          {index === 0 && (
+        return (
+          <Link
+            key={item.label}
+            href={item.href}
+            className={`group relative py-2 text-[16px] font-medium transition-colors duration-300 ${
+              active ? "text-[#c99655]" : "text-white/95 hover:text-[#c99655]"
+            }`}
+          >
+            {item.label}
+
+            {/* Active underline */}
             <span
               aria-hidden
-              className="absolute bottom-[-3px] left-0 h-[1px] w-full bg-[#c99655]"
+              className={`absolute bottom-[-3px] left-0 h-[1px] bg-[#c99655] transition-all duration-300 ${
+                active ? "w-full" : "w-0 group-hover:w-full"
+              }`}
             />
-          )}
-
-          {/* Hover underline */}
-          {index !== 0 && (
-            <span
-              aria-hidden
-              className="absolute bottom-[-3px] left-0 h-px w-0 bg-[#c99655] transition-all duration-300 group-hover:w-full"
-            />
-          )}
-        </Link>
-      ))}
+          </Link>
+        );
+      })}
     </nav>
   );
 }

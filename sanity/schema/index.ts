@@ -13,11 +13,13 @@ import { turnkeyProcess } from "@/features/turnkey/schema";
 
 import { blogPost } from "./blog-post";
 import { navigation } from "./navigation";
+import { pageMetadata } from "./page-metadata";
 import { siteSettings } from "./site-settings";
 
 export const schemaTypes = [
   siteSettings,
   navigation,
+  pageMetadata,
   hero,
   service,
   project,

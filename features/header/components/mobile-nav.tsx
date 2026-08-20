@@ -85,7 +85,8 @@ export function MobileNav({ open, onClose, phone = "+91 99999 99999" }: MobileNa
           {/* ================= 2-COLUMN NAVIGATION GRID ================= */}
           <nav className="mt-5 grid grid-cols-2 gap-2.5">
             {mainNav.map((item, index) => {
-              const isActive = pathname === item.href;
+              const href = item.href;
+              const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
               return (
                 <Link
                   key={item.label}
@@ -119,7 +120,7 @@ export function MobileNav({ open, onClose, phone = "+91 99999 99999" }: MobileNa
           <div className="mt-5 pt-4 border-t border-white/[0.08] space-y-2.5">
             {/* Primary Consultation Pill Button */}
             <Link
-              href="#contact"
+              href="/contact"
               onClick={onClose}
               className="flex h-12 w-full items-center justify-between rounded-[16px] bg-[#EAD8BD] px-5 text-[12px] font-medium tracking-wide text-[#171411] transition-transform active:scale-[0.98] hover:bg-[#F2E5D1] shadow-md"
             >

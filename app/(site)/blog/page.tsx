@@ -3,14 +3,24 @@ import Image from "next/image";
 
 import { sanityFetch } from "@/sanity/lib";
 import { urlFor } from "@/sanity/lib/image";
-import { blogPostsQuery } from "@/sanity/lib/queries";
+import { blogPostsQuery, pageMetadataQuery } from "@/sanity/lib/queries";
 import { SectionHeading } from "@/shared/components/sections/section-heading";
 
-export const metadata: Metadata = {
-  title: "Journal",
-  description:
-    "Notes on design, materials and living beautifully from the Shipra Designs studio.",
-};
+interface PageMeta {
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = await sanityFetch<PageMeta>(pageMetadataQuery, { slug: "blog" }, { tags: ["sanity-pageMetadata"] });
+
+  return {
+    title: meta?.title ?? "Journal",
+    description: meta?.description ?? "",
+    openGraph: meta?.ogImage ? { images: [meta.ogImage] } : undefined,
+  };
+}
 
 interface SanityBlogPost {
   title: string;

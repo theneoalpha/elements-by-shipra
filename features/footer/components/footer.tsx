@@ -130,7 +130,7 @@ export default function Footer({ siteSettings }: FooterProps) {
               {footerServices.map((service) => (
                 <li key={service}>
                   <Link
-                    href="#services"
+                    href="/services"
                     className="text-sm text-[#c5beba] transition-colors hover:text-[#c99655]"
                   >
                     {service}
@@ -174,7 +174,7 @@ export default function Footer({ siteSettings }: FooterProps) {
             </ul>
 
             <Link
-              href="#contact"
+              href="/contact"
               className="mt-5 inline-flex h-10 w-full items-center justify-between border border-[#c99655]/40 px-5 text-xs font-medium tracking-[0.1em] uppercase text-[#c99655] transition-colors hover:border-[#c99655] hover:bg-[#c99655] hover:text-[#1a1715] rounded-sm"
             >
               <span>Book a Consultation</span>
@@ -194,14 +194,14 @@ export default function Footer({ siteSettings }: FooterProps) {
 
           <div className="flex items-center gap-6">
             <Link
-              href="#contact"
+              href="/contact"
               className="transition-colors hover:text-[#c99655]"
             >
               Privacy Policy
             </Link>
             <span>•</span>
             <Link
-              href="#contact"
+              href="/contact"
               className="transition-colors hover:text-[#c99655]"
             >
               Terms of Service

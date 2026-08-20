@@ -107,3 +107,9 @@ export const consultationQuery = `*[_type == "consultation"][0]{
   serviceOptions,
   budgetRanges
 }`;
+
+export const pageMetadataQuery = `*[_type == "pageMetadata" && slug == $slug][0]{
+  title,
+  description,
+  "ogImage": ogImage.asset->url
+}`;

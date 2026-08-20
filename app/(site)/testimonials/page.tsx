@@ -1,12 +1,24 @@
 import type { Metadata } from "next";
 
 import { ReviewForm } from "@/features/testimonial-review/components/review-form";
+import { sanityFetch } from "@/sanity/lib";
+import { pageMetadataQuery } from "@/sanity/lib/queries";
 
-export const metadata: Metadata = {
-  title: "Leave a Review",
-  description:
-    "Share your experience working with Shipra Designs. We value your feedback.",
-};
+interface PageMeta {
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = await sanityFetch<PageMeta>(pageMetadataQuery, { slug: "testimonials" }, { tags: ["sanity-pageMetadata"] });
+
+  return {
+    title: meta?.title ?? "Leave a Review",
+    description: meta?.description ?? "",
+    openGraph: meta?.ogImage ? { images: [meta.ogImage] } : undefined,
+  };
+}
 
 export default function TestimonialsPage() {
   return (
