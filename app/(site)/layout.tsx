@@ -1,5 +1,6 @@
 import Footer from "@/features/footer/components/footer";
 import Header from "@/features/header/components/header";
+import { WhatsAppButton } from "@/features/whatsapp/components/whatsapp-button";
 import { sanityFetch } from "@/sanity/lib";
 import { siteSettingsQuery, navigationQuery } from "@/sanity/lib/queries";
 
@@ -23,6 +24,7 @@ export default async function SiteLayout({
     email?: string;
     address?: string;
     brandStatement?: string;
+    whatsappMessage?: string;
     socialLinks?: { instagram?: string; facebook?: string; pinterest?: string };
   } | null;
 
@@ -31,6 +33,7 @@ export default async function SiteLayout({
       <Header siteSettings={settings ?? undefined} />
       {children}
       <Footer siteSettings={settings ?? undefined} />
+      <WhatsAppButton message={settings?.whatsappMessage} />
     </>
   );
 }

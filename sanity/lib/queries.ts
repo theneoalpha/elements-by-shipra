@@ -11,6 +11,7 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   brandStatement,
   workingHours,
   trustFootnote,
+  whatsappMessage,
   socialLinks
 }`;
 
