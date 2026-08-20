@@ -113,3 +113,8 @@ export const pageMetadataQuery = `*[_type == "pageMetadata" && slug == $slug][0]
   description,
   "ogImage": ogImage.asset->url
 }`;
+
+export const legalPageQuery = `*[_type == "legalPage" && slug == $slug][0]{
+  title,
+  body
+}`;

@@ -194,14 +194,14 @@ export default function Footer({ siteSettings }: FooterProps) {
 
           <div className="flex items-center gap-6">
             <Link
-              href="/contact"
+              href="/privacy-policy"
               className="transition-colors hover:text-[#c99655]"
             >
               Privacy Policy
             </Link>
             <span>•</span>
             <Link
-              href="/contact"
+              href="/terms-of-service"
               className="transition-colors hover:text-[#c99655]"
             >
               Terms of Service

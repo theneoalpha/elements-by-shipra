@@ -44,6 +44,8 @@ export {
   transformationQuery,
   turnkeyProcessQuery,
   consultationQuery,
+  pageMetadataQuery,
+  legalPageQuery,
 } from "./queries";
 
 export type { SanityDocument };

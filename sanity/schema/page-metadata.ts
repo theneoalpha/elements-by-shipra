@@ -18,6 +18,8 @@ export const pageMetadata = defineType({
           { title: "Contact", value: "contact" },
           { title: "Reviews", value: "testimonials" },
           { title: "Blog", value: "blog" },
+          { title: "Privacy Policy", value: "privacy-policy" },
+          { title: "Terms of Service", value: "terms-of-service" },
         ],
         layout: "radio",
       },
