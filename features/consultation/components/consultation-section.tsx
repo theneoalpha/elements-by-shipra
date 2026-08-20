@@ -14,36 +14,43 @@ interface ConsultationSectionProps {
     serviceOptions?: string[];
     budgetRanges?: string[];
   };
+  siteSettings?: {
+    phone?: string;
+    email?: string;
+    address?: string;
+    workingHours?: string;
+    trustFootnote?: string;
+  };
 }
 
-export function ConsultationSection({ data }: ConsultationSectionProps) {
-  const phone = siteConfig?.phone || fallback.phone;
-  const email = siteConfig?.email || fallback.email;
-  const address = siteConfig?.address || fallback.address;
+export function ConsultationSection({ data, siteSettings }: ConsultationSectionProps) {
+  const phone = siteSettings?.phone || siteConfig?.phone || fallback.phone;
+  const email = siteSettings?.email || siteConfig?.email || fallback.email;
+  const address = siteSettings?.address || siteConfig?.address || fallback.address;
 
   const contactDetails = [
     {
       icon: Phone,
       label: "DIRECT INQUIRIES",
-      value: phone,
+      value: siteSettings?.phone || fallback.phone,
       href: `tel:${String(phone).replace(/\s/g, "")}`,
     },
     {
       icon: Mail,
       label: "STUDIO EMAIL",
-      value: email,
+      value: siteSettings?.email || fallback.email,
       href: `mailto:${email}`,
     },
     {
       icon: MapPin,
       label: "STUDIO ADDRESS",
-      value: address,
+      value: siteSettings?.address || fallback.address,
       href: null,
     },
     {
       icon: Clock,
       label: "WORKING HOURS",
-      value: fallback.workingHours,
+      value: siteSettings?.workingHours || fallback.workingHours,
       href: null,
     },
   ];
@@ -129,7 +136,7 @@ export function ConsultationSection({ data }: ConsultationSectionProps) {
             {/* Trust Footnote */}
             <div className="mt-8 flex items-center gap-2.5 text-[11.5px] text-[#7A7268]">
               <Sparkles size={14} className="text-[#B58544] shrink-0" />
-              <span>{fallback.trustNote}</span>
+              <span>{siteSettings?.trustFootnote ?? fallback.trustNote}</span>
             </div>
           </div>
 

@@ -18,6 +18,7 @@ import {
   projectsQuery,
   promisesQuery,
   servicesQuery,
+  siteSettingsQuery,
   testimonialStatsQuery,
   testimonialsQuery,
   transformationQuery,
@@ -41,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const [hero, services, projects, promises, about, transformation, turnkey, testimonials, testimonialStats, consultation] =
+  const [hero, services, projects, promises, about, transformation, turnkey, testimonials, testimonialStats, consultation, siteSettings] =
     await Promise.all([
       sanityFetch<Record<string, unknown>>(heroQuery, undefined, { tags: ["sanity-hero"] }),
       sanityFetch<Array<Record<string, unknown>>>(servicesQuery, undefined, { tags: ["sanity-services"] }),
@@ -53,6 +54,7 @@ export default async function Home() {
       sanityFetch<Array<Record<string, unknown>>>(testimonialsQuery, undefined, { tags: ["sanity-testimonials"] }),
       sanityFetch<Record<string, unknown>>(testimonialStatsQuery, undefined, { tags: ["sanity-testimonialStats"] }),
       sanityFetch<Record<string, unknown>>(consultationQuery, undefined, { tags: ["sanity-consultation"] }),
+      sanityFetch<Record<string, unknown>>(siteSettingsQuery, undefined, { tags: ["sanity-siteSettings"] }),
     ]);
 
   return (
@@ -72,7 +74,7 @@ export default async function Home() {
             | undefined) ?? undefined
         }
       />
-      <ConsultationSection data={consultation ?? undefined} />
+      <ConsultationSection data={consultation ?? undefined} siteSettings={siteSettings ?? undefined} />
     </main>
   );
 }
