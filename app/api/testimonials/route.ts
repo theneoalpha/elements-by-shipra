@@ -4,8 +4,10 @@ import { writeClient } from "@/sanity/lib/client";
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const { quote, name, role } = body;
+    const formData = await request.formData();
+    const quote = formData.get("quote") as string | null;
+    const name = formData.get("name") as string | null;
+    const role = formData.get("role") as string | null;
 
     if (!quote || !name || !role) {
       return NextResponse.json(
