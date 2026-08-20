@@ -10,6 +10,7 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
 export default defineConfig({
   name: "element-by-shipra",
   title: "Elements by Shipra",
+  basePath: "/studio",
   projectId,
   dataset,
   plugins: [
