@@ -24,13 +24,27 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await writeClient.create({
-      _type: "testimonial",
+    const doc = {
+      _type: "testimonial" as const,
       quote,
       name,
       role,
       approved: false,
-    });
+      projectImage: undefined as
+        | { _type: "image"; asset: { _ref: string } }
+        | undefined,
+    };
+
+    const projectImage = formData.get("projectImage");
+    if (projectImage instanceof File) {
+      const asset = await writeClient.assets.upload("image", projectImage);
+      doc.projectImage = {
+        _type: "image",
+        asset: { _ref: asset._id },
+      };
+    }
+
+    const result = await writeClient.create(doc);
 
     return NextResponse.json({ success: true, id: result._id });
   } catch (error) {
