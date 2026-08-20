@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-import { RichText } from "@/shared/components/rich-text";
 import { sanityFetch } from "@/sanity/lib";
 import { legalPageQuery, pageMetadataQuery } from "@/sanity/lib/queries";
+import { RichText } from "@/shared/components/rich-text";
 
 interface PageMeta {
   title: string;
