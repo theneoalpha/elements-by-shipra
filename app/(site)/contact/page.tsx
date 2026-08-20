@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { ConsultationSection } from "@/features/consultation/components/consultation-section";
 import { sanityFetch } from "@/sanity/lib";
-import { pageMetadataQuery } from "@/sanity/lib/queries";
+import { consultationQuery, pageMetadataQuery } from "@/sanity/lib/queries";
 
 interface PageMeta {
   title: string;
@@ -20,10 +20,14 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const consultation = await sanityFetch<Record<string, unknown>>(consultationQuery, undefined, {
+    tags: ["sanity-consultation"],
+  });
+
   return (
     <main className="pt-[88px] lg:pt-[105px]">
-      <ConsultationSection />
+      <ConsultationSection data={consultation ?? undefined} />
     </main>
   );
 }

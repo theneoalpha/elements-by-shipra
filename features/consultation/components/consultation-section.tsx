@@ -4,11 +4,19 @@ import { Mail, MapPin, Phone, Clock, Sparkles } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
 import ConsultationForm from "@/features/consultation/components/consultation-form";
-
 import { fallback } from "@/features/consultation/data";
 
+interface ConsultationSectionProps {
+  data?: {
+    eyebrow?: string;
+    title?: string;
+    description?: string;
+    serviceOptions?: string[];
+    budgetRanges?: string[];
+  };
+}
 
-export function ConsultationSection() {
+export function ConsultationSection({ data }: ConsultationSectionProps) {
   const phone = siteConfig?.phone || fallback.phone;
   const email = siteConfig?.email || fallback.email;
   const address = siteConfig?.address || fallback.address;
@@ -66,18 +74,22 @@ export function ConsultationSection() {
             <div className="inline-flex items-center gap-3">
               <span className="h-px w-6 bg-[#C59A58]" />
               <span className="text-[11px] font-semibold tracking-[0.28em] uppercase text-[#B58544]">
-                {fallback.eyebrow}
+                {data?.eyebrow ?? fallback.eyebrow}
               </span>
               <span className="h-px w-6 bg-[#C59A58]" />
             </div>
 
             <h2 className="mt-4 font-serif text-[38px] font-normal leading-[1.1] text-[#1A1816] md:text-[50px]">
-              {fallback.title}{" "}
-              <span className="italic text-[#B58544] block">{fallback.titleItalic}</span>
+              {data?.title ?? (
+                <>
+                  {fallback.title}{" "}
+                  <span className="italic text-[#B58544] block">{fallback.titleItalic}</span>
+                </>
+              )}
             </h2>
 
             <p className="mt-5 max-w-md text-[13.5px] leading-relaxed text-[#6E675E]">
-              {fallback.description}
+              {data?.description ?? fallback.description}
             </p>
 
             {/* Quick Contact Cards */}
