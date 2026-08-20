@@ -47,7 +47,7 @@ export const projectsQuery = `*[_type == "project"] | order(number asc){
   tags[]{label}
 }`;
 
-export const testimonialsQuery = `*[_type == "testimonial"]{
+export const testimonialsQuery = `*[_type == "testimonial" && approved == true]{
   quote,
   name,
   role,

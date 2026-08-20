@@ -34,9 +34,22 @@ export const testimonial = defineType({
       type: "image",
       options: { hotspot: true },
     }),
+    defineField({
+      name: "approved",
+      title: "Approved",
+      type: "boolean",
+      initialValue: true,
+      description: "Only approved testimonials are displayed on the website",
+    }),
   ],
   preview: {
-    select: { title: "name", subtitle: "role" },
+    select: { title: "name", subtitle: "role", approved: "approved" },
+    prepare({ title, subtitle, approved }) {
+      return {
+        title,
+        subtitle: approved === false ? `${subtitle} (hidden)` : subtitle,
+      };
+    },
   },
 });
 

@@ -36,6 +36,11 @@ function getComponentProps<T extends FieldValues>(
     return { ...inputRest, type: inputType ?? "text" };
   }
 
+  if (type === "image") {
+    const { accept } = rest as { accept?: string };
+    return { accept };
+  }
+
   return rest;
 }
 

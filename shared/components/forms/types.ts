@@ -34,7 +34,8 @@ type TFieldTypeProps =
       placeholder?: string;
       rows?: number;
       maxLength?: number;
-    };
+    }
+  | { type: "image"; accept?: string };
 
 export type TFieldConfig<T extends FieldValues = FieldValues> = TBaseField<T> &
   TFieldTypeProps;
