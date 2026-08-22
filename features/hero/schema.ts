@@ -31,12 +31,7 @@ export const hero = defineType({
       type: "text",
       rows: 3,
     }),
-    defineField({
-      name: "ctaText",
-      title: "CTA Text",
-      type: "string",
-      initialValue: "Watch Studio Showreel",
-    }),
+  
     defineField({
       name: "image",
       title: "Hero Image",
